@@ -207,7 +207,6 @@ function Post( {
         //If its a text post with more than characters, render transparent faded div
         if ( post.body.length > wordLimitFadedDisplay ) {
           return (
-            <Link to={link} style={{color:"rgba(0,0,0,0.7)", fontSize: 14 }}>
 							<div style={{postion: 'relative'}}>
 
 										{
@@ -225,7 +224,6 @@ function Post( {
                     }
 
 							</div>
-						</Link>
           )
 
           //For shorter posts
@@ -249,12 +247,34 @@ function Post( {
     return <Redirect to="/agora" />
   }
 
+  function Wrapper({ link, shouldLink, children }) {
+    if(shouldLink) {
+      return (
+        <div
+          onClick={click}
+          style={{
+            cursor: "pointer"
+          }}
+        >
+          {children}
+        </div>
+      )
+    } else return (
+      <React.Fragment>
+        {children}
+      </React.Fragment>
+    )
+  }
+
   return (
-    <React.Fragment>
+    <Wrapper
+      link={link}
+      shouldLink={!showComments}
+    >
 			<Card
 				className="agora-post"
 				bodyStyle={{padding: 8, paddingRight: "5%" }}
-        onClick={click}
+        // onClick={click}
 	      // style={!showComments ? {marginBottom: 12} : {marginTop: "5%"}}
 	      style={{
 	      	marginBottom: 16
@@ -462,7 +482,7 @@ function Post( {
         onCancel={() => onMustAuthCancel()}
       />
 
-		</React.Fragment>
+		</Wrapper>
   )
   /*<div>Author: {(!deleted && author !== "deleted") ? ((post.display.type === "user") ? author.details.username : author.details.name) : "deleted"}</div>*/
 }

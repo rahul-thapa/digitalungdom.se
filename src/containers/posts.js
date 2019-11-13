@@ -31,7 +31,7 @@ function Posts({ hypagora, list }) {
 						else dispatch(getAgoragrams({ dateAfter, dateBefore: edge, hypagora, sort, time }, true));
 					}
 				}}
-				hasMore={edge}
+				hasMore={edge && true}
 				loader={
 					<Post key="loading_post_new" loading/>
 				}

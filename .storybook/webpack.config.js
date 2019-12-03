@@ -6,6 +6,7 @@ module.exports = async ({ config, mode }) => {
     ...config.resolve,
     alias: {
       "@components": path.resolve(__dirname, "./../src/prod_components"),
+      "components": path.resolve(__dirname, "./../src/components"),
       "containers": path.resolve(__dirname, "./../src/containers")
     }
   }
@@ -34,7 +35,11 @@ module.exports = async ({ config, mode }) => {
           {
               loader: 'less-loader',
               options: {
-                  javascriptEnabled: true
+                modifyVars: {
+                  'primary-color': '#1DA57A',
+                  'link-color': '#1DA57A',
+                },
+                javascriptEnabled: true
               }
           }
       ],

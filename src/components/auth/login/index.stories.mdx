@@ -1,0 +1,42 @@
+import { useState } from 'react';
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { Badge, Button } from 'antd'
+import Login from "./index";
+import * as stories from './index.stories.jsx'
+
+<Meta
+  title="Auth/Login"
+  component={Login}
+  decorators={[
+    (storyFn) => (
+      <div
+        style={{
+          maxWidth: 400,
+          margin: '0 auto',
+          padding: 32,
+        }}
+      >
+        {storyFn()}
+      </div>
+    )
+  ]}
+/>
+
+<Props of={Login} />
+
+## Login with state
+
+<Preview>
+  <Story name="Login with state">
+    {stories.LoginState()}
+  </Story>
+</Preview>
+
+## Simple example
+
+<Preview>
+  <Story name="Simple example">
+    <Login title="" />
+  </Story>
+</Preview>

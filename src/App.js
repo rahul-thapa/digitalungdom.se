@@ -10,13 +10,13 @@ const { store, persistor } = configureStore()
 
 function App() {
   return (
-		<React.Suspense fallback={<Loading logo/>}>
-	  	<Provider store={store}>
-	  		<PersistGate loading={null} persistor={persistor}>
-	    		<Router history={history} />
-	  		</PersistGate>
-	  	</Provider>
-	  </React.Suspense>
+        <React.Suspense fallback={<Loading logo/>}>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <Router history={history} />
+            </PersistGate>
+        </Provider>
+      </React.Suspense>
   )
 }
 

@@ -1,0 +1,84 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { withKnobs, select, boolean } from '@storybook/addon-knobs';
+import { Badge, Button } from 'antd'
+import Card from "./index";
+
+<Meta
+  title="Card"
+  component={Card}
+  decorators={[
+    (storyFn) => (
+      <div
+        style={{
+          maxWidth: 400,
+          margin: '0 auto',
+          padding: 32,
+        }}
+      >
+        {storyFn()}
+      </div>
+    )
+  ]}
+  props
+/>
+
+# Card
+
+<Props of={Card} />
+
+## Example of a card
+
+<Preview>
+  <Story name="Full example">
+    <Card
+      title="Welcome!"
+    >
+      <p>
+        This is an example card. In these, you can do anything.
+      </p>
+      <div>
+        <Button type="primary">
+          Anything is possible.
+        </Button>
+      </div>
+    </Card>
+  </Story>
+</Preview>
+
+
+## Card with a title
+```jsx
+<Card title="Hey!" />
+```
+<Preview>
+  <Story name="With title">
+    <Card title="Hey!" />
+  </Story>
+</Preview>
+
+
+## Element as title
+
+<Preview>
+  <Story name="Element as title">
+    <Card
+      title={(
+        <div>
+          <Badge status="processing" />Processing
+        </div>
+      )}
+    >
+      Your package is coming!
+    </Card>
+  </Story>
+</Preview>
+
+## Alignment of title
+<Preview>
+  <Story name="Alignment of title">
+    <Card
+      title="Title, left aligned!"
+      titleAlign="left"
+    />
+  </Story>
+</Preview>

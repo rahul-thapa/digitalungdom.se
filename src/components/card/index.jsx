@@ -15,7 +15,7 @@ const StyledCard = styled.div`
 `;
 
 const Header = styled.h1`
-  font-size: 28px;
+  font-size: 24px;
   margin: 0;
   color: ${(props) => props.theme.fg};
   text-align: ${(props) => props.titleAlign}

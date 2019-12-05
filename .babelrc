@@ -1,10 +1,10 @@
 {
   "plugins": [
-  	'babel-plugin-styled-components',
+  	"babel-plugin-styled-components",
   	[ "import", {
   		"libraryName": "antd",
   		"libraryDirectory": "es",
-  		"style": true,   // or 'css'
+  		"style": true   // or 'css'
 	}]
   ]
 }

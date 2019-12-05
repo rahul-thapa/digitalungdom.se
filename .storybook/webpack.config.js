@@ -35,10 +35,6 @@ module.exports = async ({ config, mode }) => {
           {
               loader: 'less-loader',
               options: {
-                modifyVars: {
-                  'primary-color': '#1DA57A',
-                  'link-color': '#1DA57A',
-                },
                 javascriptEnabled: true
               }
           }

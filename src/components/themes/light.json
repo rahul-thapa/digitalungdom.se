@@ -1,4 +1,5 @@
 {
 	"fg": "black",
-	"bg": "white"
+	"bg": "white",
+	"maincolor": "#1e6ee8"
 }

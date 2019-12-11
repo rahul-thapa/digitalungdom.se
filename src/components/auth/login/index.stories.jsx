@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Login from 'components/auth/login';
+import Login from './index';
 
 export const LoginState = () => {
   const [problem, makeProblem] = useState(false);
@@ -11,7 +11,7 @@ export const LoginState = () => {
       usernameText="Användarnamn"
       passwordText="Lösenord"
       submitText="Logga in"
-      submit={() => {
+      onSubmit={() => {
         submit(true);
         setTimeout(() => {
           makeProblem(!problem);

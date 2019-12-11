@@ -4,7 +4,6 @@
         "es6": true
     },
     "extends": [
-        "plugin:mdx/recommended",
         "eslint:recommended",
         "plugin:react/recommended",
         "airbnb"
@@ -24,6 +23,8 @@
         "react"
     ],
     "rules": {
-        "import/no-unresolved": "off"
+        "import/extensions": ["error", "never"],
+        "import/no-unresolved": "off",
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     }
 }

@@ -27,6 +27,8 @@ yarn-error.log*
 
 # Local env file with credentials
 .env
+# Local env file with preferences for REACT_EDITOR
+.env.local
 
 # dontpush folder
 dontpush

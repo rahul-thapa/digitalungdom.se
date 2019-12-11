@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
@@ -7,68 +7,112 @@ import {
   Input,
 } from 'antd';
 import Card from 'components/card';
+import stylePropType from 'react-style-proptype';
 
 function Login({
   form,
   title,
-  passwordText,
-  usernameText,
-  submitText,
+  text,
   usernamePrefix,
   passwordPrefix,
-  errorUsername,
-  submit,
+  onSubmit,
   submitting,
   forgotPasswordLink,
   createAccountLink,
+  cardStyle,
 }) {
   const { getFieldDecorator } = form;
+  const [usernameTouched, touchUsername] = useState(true);
+  const [passwordTouched, touchPassword] = useState(true);
+
+  const {
+    username = 'Username',
+    usernameRequired = 'Please input your username!',
+    password = 'Password',
+    passwordRequired = 'Please input your password!',
+    submit = 'Log in',
+    errorUsername = '',
+    errorPassword = '',
+  } = text;
 
   return (
     <Card
       title={title}
+      cardStyle={cardStyle}
     >
-      <Form>
-        <Form.Item
-          validateStatus={errorUsername ? 'error' : null}
-          help={errorUsername}
-        >
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+          form.validateFieldsAndScroll((err, values) => {
+            if (!err) {
+              touchUsername(false);
+              touchPassword(false);
+              onSubmit({
+                username: values.username,
+                password: values.password,
+              });
+            }
+          });
+        }}
+      >
+        <Form.Item>
           {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!' }],
+            rules: [
+              { required: true, message: usernameRequired },
+              {
+                validator: (rule, value, callback) => {
+                  if (!usernameTouched && errorUsername) {
+                    callback(errorUsername);
+                  }
+                  touchUsername(true);
+                  callback();
+                },
+              },
+            ],
           })(
             <Input
               prefix={usernamePrefix}
-              placeholder={usernameText}
-              aria-label={usernameText}
+              placeholder={username}
+              aria-label={username}
               aria-required="true"
             />,
           )}
         </Form.Item>
         <Form.Item style={{ marginBottom: forgotPasswordLink ? 0 : null }}>
           {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your password!' }],
+            rules: [
+              { required: true, message: passwordRequired },
+              {
+                validator: (rule, value, callback) => {
+                  if (!passwordTouched && errorPassword) {
+                    callback(errorPassword);
+                  }
+                  touchPassword(true);
+                  callback();
+                },
+              },
+            ],
           })(
             <Input
               type="password"
               prefix={passwordPrefix}
-              placeholder={passwordText}
-              aria-label={passwordText}
+              placeholder={password}
+              aria-label={password}
               aria-required="true"
             />,
           )}
-          {forgotPasswordLink}
         </Form.Item>
-        <Form.Item>
+        {forgotPasswordLink}
+        <Form.Item style={{ marginTop: forgotPasswordLink ? 16 : null }}>
           <Button
             type="primary"
             htmlType="submit"
-            onClick={submit}
             style={{
               width: '100%',
             }}
             loading={submitting}
           >
-            {submitText}
+            {submit}
           </Button>
           {createAccountLink}
         </Form.Item>
@@ -78,35 +122,40 @@ function Login({
 }
 
 Login.propTypes = {
-  title: PropTypes.string,
-  passwordText: PropTypes.string,
-  usernameText: PropTypes.string,
-  submitText: PropTypes.string,
+  title: PropTypes.node,
+  text: PropTypes.shape({
+    password: PropTypes.string,
+    passwordRequired: PropTypes.string,
+    username: PropTypes.string,
+    usernameRequired: PropTypes.string,
+    submit: PropTypes.string,
+    errorUsername: PropTypes.string,
+    errorPassword: PropTypes.string,
+  }),
   usernamePrefix: PropTypes.node,
   passwordPrefix: PropTypes.node,
-  errorUsername: PropTypes.string,
-  submit: PropTypes.func,
+  onSubmit: PropTypes.func,
   form: PropTypes.shape({
     getFieldDecorator: PropTypes.func,
+    validateFieldsAndScroll: PropTypes.func,
   }),
   forgotPasswordLink: PropTypes.node,
   createAccountLink: PropTypes.node,
   submitting: PropTypes.bool,
+  cardStyle: stylePropType,
 };
 
 Login.defaultProps = {
   title: 'Log in',
-  passwordText: 'Password',
-  usernameText: 'Username',
-  submitText: 'Log in',
-  errorUsername: '',
+  text: {},
   usernamePrefix: <Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />,
   passwordPrefix: <Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />,
-  submit: () => {},
+  onSubmit: () => {},
   form: null,
   forgotPasswordLink: null,
   createAccountLink: null,
   submitting: false,
+  cardStyle: {},
 };
 
 export default Form.create()(Login);

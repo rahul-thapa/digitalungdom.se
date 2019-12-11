@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
 import { withKnobs, select, boolean } from '@storybook/addon-knobs';
-import { Badge, Button } from 'antd'
-import Login from "./index";
-import * as stories from './index.stories.jsx'
+import { Badge, Button } from 'antd';
+import Login from './index';
+import * as stories from './index.stories';
 
 <Meta
   title="Auth/Login"
@@ -19,24 +19,16 @@ import * as stories from './index.stories.jsx'
       >
         {storyFn()}
       </div>
-    )
+    ),
   ]}
 />
 
-<Props of={Login} />
-
-## Login with state
+<Props
+  of={Login}
+/>
 
 <Preview>
   <Story name="Login with state">
     {stories.LoginState()}
-  </Story>
-</Preview>
-
-## Simple example
-
-<Preview>
-  <Story name="Simple example">
-    <Login title="" />
   </Story>
 </Preview>

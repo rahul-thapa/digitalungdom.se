@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 // import actions from 'actions/auth'
-import { useDispatch, useSelector } from 'react-redux'
-import { withTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 // import {
 // 	Link,
 // 	ProfileBox
 // } from '@components'
-import Link from '@components/link'
-import ProfileBox from '@components/profilebox'
-import { Row, Col } from '@components/grid'
-import { auth, logout } from 'actions/auth'
+import Link from '@components/link';
+import ProfileBox from '@components/profilebox';
+import { Row, Col } from '@components/grid';
+import { auth, logout } from 'actions/auth';
 
 // const mapStateToProps = (state) => ({
 // 	profile: state.Auth.profile
@@ -44,7 +44,7 @@ function Authentication({ t, type, setDropdownVisible }) {
 				}}
 			/>
 		)
-	}else{
+	}
 
 		if(type==="dropdown"){
 			return (
@@ -73,7 +73,7 @@ function Authentication({ t, type, setDropdownVisible }) {
 					</li>
 				</ul>
 			)
-		}else{
+		}
 			return(
 				<Row
 					type="flex"
@@ -105,8 +105,8 @@ function Authentication({ t, type, setDropdownVisible }) {
 					</Col>
 				</Row>
 			)
-		}
-	}
+		
+	
 }
 
-export default withTranslation()(Authentication)
+export default withTranslation()(Authentication);

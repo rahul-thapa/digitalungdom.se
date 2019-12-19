@@ -5,9 +5,6 @@ import styled from 'styled-components';
 
 const StyledCard = styled.div`
   padding: 24px 48px;
-  padding: 24px 48px;
-  padding: 24px 48px;
-  padding: 24px 48px;
   border-radius: 8px;
   border: 1px solid rgba(0,0,0,0.1);
   background: ${(props) => props.theme.bg};
@@ -37,7 +34,7 @@ function Card({
         </Header>
       )}
       { children && (
-        <div style={{ marginTop: 8, ...bodyStyle }}>
+        <div style={{ marginTop: title ? 8 : 0, ...bodyStyle }}>
           {children}
         </div>
       )}

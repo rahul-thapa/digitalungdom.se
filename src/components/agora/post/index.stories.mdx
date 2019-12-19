@@ -1,0 +1,46 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Post from './index'
+import { Avatar } from 'antd'
+
+<Meta
+  title="Agora/Post"
+  component={Post}
+  decorators={[
+    (storyFn) => (
+      <div
+        style={{
+          maxWidth: 600,
+          margin: '0 auto',
+          padding: 32,
+        }}
+      >
+        {storyFn()}
+      </div>
+    ),
+  ]}
+/>
+
+<Story name="Post">
+  <Post
+    forum="general"
+    time="2019-04-18"
+    stars={10}
+    commentAmmount={200}
+    title="Hello world!"
+    avatar={
+      <Avatar icon="user" />
+    }
+    author={
+      <a
+        href="#user"
+      >
+        Douglas Bengtsson
+      </a>
+    }
+  />
+</Story>
+
+<Story name="Loading post">
+  <Post loading />
+</Story>
+

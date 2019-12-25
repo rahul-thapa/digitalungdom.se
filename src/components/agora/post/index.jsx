@@ -195,12 +195,16 @@ Post.defaultProps = {
   loading: false,
   avatar: null,
   author: null,
+  forum: null,
+  time: null,
 };
 
 Post.propTypes = {
   loading: PropTypes.bool,
   avatar: PropTypes.node,
   author: PropTypes.node,
+  forum: PropTypes.node,
+  time: PropTypes.instanceOf(Date),
 };
 
 export default Post;
